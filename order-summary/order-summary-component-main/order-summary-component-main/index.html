@@ -11,9 +11,12 @@
       sizes="32x32"
       href="./images/favicon-32x32.png"
     />
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&display=swap"
+      rel="stylesheet"
+    />
     <title>Frontend Mentor | Order summary card</title>
 
     <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
@@ -25,7 +28,7 @@
         --des-blue: hsl(224, 23%, 55%);
         --dark-blue: hsl(223, 47%, 23%);
       }
-      body{
+      body {
         background-color: var(--pale-blue);
       }
       .attribution {
@@ -34,10 +37,9 @@
       }
       .attribution a {
         color: hsl(228, 45%, 44%);
-
       }
       .card {
-        position: relative;
+        position: absolute;
         width: 30%;
         min-width: 330px;
         margin-left: auto;
@@ -45,41 +47,56 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
         text-align: center;
         font-family: "Red Hat Display", sans-serif;
         font-size: 16px;
-        background-color:white;
+        background-color: white;
         color: var(--dark-blue);
-        height: 600px;
+        height: 700px;
         margin-top: auto;
         font-weight: 500;
         overflow: hidden;
         border-radius: 10px;
-        
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
       }
       .cost {
         display: flex;
         align-items: center;
+        max-width: 350px;
+        border-radius: 10px;
+        width: 90%;
+        padding: 10px;
         background-color: var(--v-pale-blue);
+      }
+      .change:hover{
+        text-decoration: none;
+      }
+      .proceed:hover{
+        opacity: 0.8;
+      }
+      .cancel:hover{
+        color:var(--dark-blue)!important;
       }
     </style>
   </head>
   <body>
     <div class="card">
-      <img src="./images/illustration-hero.svg" style="width: 100%;"/>
-      <h2 style="font-weight: 900;">Order Summary</h2>
-      <p style="width: 70%; color: var(--des-blue); line-height: 25px;">
+      <img src="./images/illustration-hero.svg" style="width: 100%" />
+      <h2 style="font-weight: 900; margin-bottom: -10px">Order Summary</h2>
+      <p style="width: 70%; color: var(--des-blue); line-height: 25px;margin-bottom: -10px;">
         You can now listen to millions of songs, audiobooks, and podcasts on any
         device anywhere you like!
       </p>
       <div class="cost">
-        <img src="./images/icon-music.svg" />
-        <p>
-          Annual Plan<br />
+        <img src="./images/icon-music.svg" style="flex: 1; max-width: 50px" />
+        <p style="flex: 5; text-align: left; padding-left: 20px">
+          <b>Annual Plan</b><br />
           $59.99/year
         </p>
-        <a href="#" style="color: var(--bright-blue)">Change</a>
+        <a href="#" style="color: var(--bright-blue); flex: 3" class="change">Change</a>
       </div>
 
       <a
@@ -91,11 +108,24 @@
           background-color: var(--bright-blue);
           border-radius: 5px;
           text-decoration: none;
-          width:80%;
+          width: 80%;
+          font-weight: 700;
+          box-shadow:1px 15px 30px -6px rgba(56,41,224,0.69);
+
+
         "
+        class="proceed"
         >Proceed to Payment</a
       >
-      <a href="#" style="color: var(--dark-blue); text-decoration: none"
+      <a
+        href="#"
+        style="
+          color: var(--des-blue);
+          text-decoration: none;
+          margin-bottom: 50px;
+          font-weight: 700;
+        "
+        class="cancel"
         >Cancel Order</a
       >
     </div>
