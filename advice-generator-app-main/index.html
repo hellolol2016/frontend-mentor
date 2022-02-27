@@ -1,28 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Advice generator app</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <title>Frontend Mentor | Advice generator app</title>
 
-  Advice #<!-- Advice ID goes here -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
 
-  "<!-- Advice text goes here -->"
-  
+
+
+      :root {
+        --gray-blue: #313a49;
+        --dark-gray-blue: #202632;
+        --light-cyan: #cee3e9;
+        --neon-green: #52ffa8;
+      }
+
+      * {
+        font-family: "manrope";
+      }
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+        color: var(--light-cyan);
+      }
+      .attribution a {
+        color: var(--neon-green);
+      }
+      main {
+        position: absolute;
+        top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+        font-size: 28px;
+        background-color: var(--gray-blue);
+        text-align: center;
+        margin: auto;
+        width: 40%;
+        border-radius: 10px;
+      }
+      .number {
+        color: var(--neon-green);
+        font-size: 16px;
+        letter-spacing: 3px;
+        font-weight: 500;
+        padding-top: 30px;
+      }
+      .advice {
+        color: var(--light-cyan);
+        font-weight: 800;
+        padding: 10px 30px;
+      }
+      .divider{
+        margin-bottom: 40x;
+      }
+      .new{
+        display:flex;
+        transform: translate(0,50%);
+        justify-content: center;
+        align-items: center;
+        background-color: var(--neon-green); 
+        width: 60px;
+        height:60px;
+        border-radius:50px;
+        margin:auto;
+      }
+
+      html {
+        background-color: var(--dark-gray-blue);
+      }
+
+      @media only screen and (max-width:1400px) {
+        main{
+          width: 90vw;
+        } 
+        .divider{
+          content:url("./images/pattern-divider-mobile.svg");
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h2 class="number">ADVICE #</h2>
+      <!-- Advice ID goes here -->
+
+      <p class="advice">"<!-- Advice text goes here -->"</p>
+      <img class="divider" src="./images/pattern-divider-desktop.svg" alt="divider" />
+      <div class="new"><img src="./images/icon-dice.svg" alt="dice" /></div>
+    </main>
+  </body>
   <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Challenge by
+    <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+      >Frontend Mentor</a
+    >. Coded by <a href="#">Dennis Wang</a>.
   </div>
-</body>
+  <script>
+    function getAdvice() {
+      fetch("https://api.adviceslip.com/advice")
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data.slip);
+          document.querySelector(".number").innerHTML =
+            "ADVICE #" + data.slip.id;
+          document.querySelector(".advice").innerHTML =
+            "&ldquo;" + data.slip.advice + "&rdquo;";
+        });
+    }
+    getAdvice();
+    document.querySelector(".new").addEventListener("click",getAdvice);
+    document.querySelector(".new img").addEventListener("click",getAdvice);
+   </script> 
 </html>
